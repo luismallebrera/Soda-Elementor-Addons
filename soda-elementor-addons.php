@@ -69,6 +69,9 @@ final class Elementor_Menu_Widget_V2 {
 
         // Load parallax background feature
         $this->load_parallax_background();
+
+        // Load liquid glass feature
+        $this->load_liquid_glass();
     }
 
     public function load_custom_icons() {
@@ -77,6 +80,10 @@ final class Elementor_Menu_Widget_V2 {
 
     public function load_parallax_background() {
         require_once(__DIR__ . '/modules/parallax-background.php');
+    }
+
+    public function load_liquid_glass() {
+        require_once(__DIR__ . '/modules/liquid-glass.php');
     }
 
     public function register_category($elements_manager) {
@@ -210,6 +217,13 @@ final class Elementor_Menu_Widget_V2 {
             [],
             self::VERSION
         );
+
+        wp_register_style(
+            'soda-liquid-glass',
+            plugins_url('assets/css/liquid-glass.css', __FILE__),
+            [],
+            self::VERSION
+        );
     }
 
     public function widget_scripts() {
@@ -334,6 +348,14 @@ final class Elementor_Menu_Widget_V2 {
             'isotope-grid',
             plugins_url('assets/js/isotope-grid.js', __FILE__),
             ['jquery', 'isotope'],
+            self::VERSION,
+            true
+        );
+
+        wp_register_script(
+            'soda-liquid-glass',
+            plugins_url('assets/js/liquid-glass.js', __FILE__),
+            ['jquery'],
             self::VERSION,
             true
         );
